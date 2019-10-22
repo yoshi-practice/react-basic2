@@ -1,5 +1,4 @@
 import React, {Component} from 'react';
-import './App.css';
 
 class App extends Component {
   constructor(props) {
@@ -10,6 +9,12 @@ class App extends Component {
       inputResult: "",
       keyupResult: ""
     };
+
+    this.onClick = this.onClick.bind(this);
+    this.onChange = this.onChange.bind(this);
+    this.onInput = this.onInput.bind(this);
+    this.onKeyUp = this.onKeyUp.bind(this);
+
   }
 
   onClick() {
@@ -20,29 +25,29 @@ class App extends Component {
 
   onChange(e) {
     this.setState({
-      changeResult: "change"
+      changeResult: e.target.value
     });
   }
 
   onInput(e) {
     this.setState({
-      inputResult: "input.."
+      inputResult: e.target.value
     });
   }
 
   onKeyUp(e) {
     this.setState({
-      keyupResult: "up"
+      keyupResult: e.target.value
     });
   }
 
   render() {
     return (
       <div>
-        <button onClick={this.onClick.bind(this)}>Click!</button>{this.state.clickResult}<br />
-        <input onChange={this.onChange.bind(this)} placeholder="change" />{this.state.changeResult}<br />
-        <input onInput={this.onInput.bind(this)} placeholder="input" />{this.state.inputResult}<br />
-        <input onKeyUp={this.onKeyUp.bind(this)} placeholder="keyup" />{this.state.keyupResult}
+        <button onClick={() => this.onClick()}>Click!</button>{this.state.clickResult}<br />
+        <input onChange={(e) => this.onChange(e)} placeholder="change" />{this.state.changeResult}<br />
+        <input onInput={(e) => this.onInput(e)} placeholder="input" />{this.state.inputResult}<br />
+        <input onKeyUp={(e) => this.onKeyUp(e)} placeholder="keyup" />{this.state.keyupResult}
       </div>
     )
   }
